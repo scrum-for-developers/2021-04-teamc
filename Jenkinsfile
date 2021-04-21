@@ -13,6 +13,7 @@ options {
   stages {
 
 stage('CLEAN') {
+      agent any
             steps {
                 cleanWs()
             }
