@@ -12,6 +12,12 @@ options {
 
   stages {
 
+stage('CLEAN') {
+            steps {
+                cleanWs()
+            }
+        }
+
     stage('BUILD') {
       agent any
 //      when {
