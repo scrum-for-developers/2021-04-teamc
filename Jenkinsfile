@@ -7,6 +7,7 @@ pipeline {
 
 options {
     preserveStashes(buildCount: 5)
+    skipDefaultCheckout()
 }
 
   stages {
