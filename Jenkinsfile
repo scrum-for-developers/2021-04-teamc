@@ -7,7 +7,7 @@ pipeline {
 
 options {
     preserveStashes(buildCount: 5)
-    skipDefaultCheckout()
+//    skipDefaultCheckout()
 
 }
 
@@ -165,7 +165,7 @@ options {
   post {
           cleanup {
               echo 'Cleaning up'
-              sh './mvnw clean'
+              deleteDir()
           }
       }
 }
