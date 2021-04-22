@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent any
   environment {
     SONAR_URL = 'http://localhost:9000/sonar'
     SITE_DEPLOY_PATH = '/scrumfordevelopers/nginx_root/worblehat-site'
@@ -14,7 +14,6 @@ options {
   stages {
 
     stage('BUILD') {
-      agent any
 //      when {
 //        branch 'master'
 //      }
@@ -44,7 +43,6 @@ options {
     }
 
     stage('UNIT TEST') {
-      agent any
 //      when {
 //        branch 'master'
 //      }
@@ -59,7 +57,6 @@ options {
     }
 
     stage('QUALITY') {
-        agent any
 //      when {
 //        branch 'master'
 //      }
@@ -73,7 +70,6 @@ options {
 //        parallel {
 
             stage('REPORTING') {
-              agent any
               when {
                 branch 'master'
               }
@@ -84,7 +80,6 @@ options {
             }
 
             stage('ACCEPTANCE TEST') {
-                agent any
                 //      when {
                 //        branch 'master'
                 //      }
@@ -120,7 +115,6 @@ options {
 //    }
 
     stage('DEPLOY DEV') {
-        agent any
         when {
         branch 'master'
         }
@@ -139,7 +133,6 @@ options {
 
 
     stage('PROD APPROVAL') {
-      agent none
       when {
         branch 'master'
       }
@@ -152,7 +145,6 @@ options {
     }
 
     stage('DEPLOY PROD') {
-      agent any
       when {
         branch 'master'
       }
