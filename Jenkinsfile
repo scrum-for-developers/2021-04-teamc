@@ -8,16 +8,10 @@ pipeline {
 options {
     preserveStashes(buildCount: 5)
     skipDefaultCheckout()
+
 }
 
   stages {
-
-stage('CLEAN') {
-      agent any
-            steps {
-                cleanWs()
-            }
-        }
 
     stage('BUILD') {
       agent any
@@ -176,4 +170,10 @@ stage('CLEAN') {
       }
     }
   }
+  post {
+          cleanup {
+              echo 'Cleaning up'
+              sh './mvnw clean'
+          }
+      }
 }
