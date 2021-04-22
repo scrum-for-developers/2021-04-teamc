@@ -5,11 +5,10 @@ pipeline {
     SITE_DEPLOY_PATH = '/scrumfordevelopers/nginx_root/worblehat-site'
   }
 
-options {
-    preserveStashes(buildCount: 5)
-//    skipDefaultCheckout()
-
-}
+  options {
+      preserveStashes(buildCount: 5)
+      disableConcurrentBuilds()
+  }
 
   stages {
 
@@ -136,6 +135,9 @@ options {
       when {
         branch 'master'
       }
+      options {
+          timeout(time: 5, unit: 'MINUTES')
+      }
       steps {
         milestone(ordinal: 50, label: "PROD_APPROVAL_REACHED")
         script {
@@ -163,9 +165,9 @@ options {
     }
   }
   post {
-          cleanup {
-              echo 'Cleaning up'
-              deleteDir()
-          }
-      }
+    cleanup {
+      echo 'Cleaning up'
+      deleteDir()
+    }
+  }
 }
