@@ -7,7 +7,7 @@ pipeline {
 
   options {
       preserveStashes(buildCount: 5)
-      disableConcurrentBuilds()
+//      disableConcurrentBuilds()
   }
 
   stages {
